@@ -1,0 +1,7 @@
+Future scope would be:
+1. Making project less hard-coded. (at some place JDBC is done directly to save time)
+2. Making UI better and more interactive.
+3. Using different types of files (audio, video) for the game.
+4. Make response speed more faster.
+5. Using connection pooling to avoid creating new connection everytime.
+6. Make more than 2 players play at a time.
