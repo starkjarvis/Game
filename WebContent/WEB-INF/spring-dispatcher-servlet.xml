@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/task  
+http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<context:component-scan base-package="game.est.*" />
+	
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/vendor/" mapping="/vendor/**" />
+	<mvc:resources location="/less/" mapping="/less/**" />
+	<mvc:resources location="/assets/" mapping="/assets/**" />
+	<mvc:resources location="/font-awesome/" mapping="/font-awesome/**" />
+	<mvc:annotation-driven />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/jsp/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+	
+	<mvc:default-servlet-handler/>
+	
+	<bean id="loginDelegate" class="game.est.delegate.LoginDelegate">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<bean id="userService" class="game.est.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<bean name="userDao" class="game.est.dao.impl.UserDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="searchPlayerService" class="game.est.service.impl.SearchPlayerServiceImpl">
+		<property name="searchPlayerDao" ref="searchPlayerDao"></property>
+	</bean>
+	
+	<bean name="searchPlayerDao" class="game.est.dao.impl.SearchPlayerDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="areCompetitorsService" class="game.est.service.impl.AreCompetitorsServiceImpl">
+		<property name="areCompetitorsDao" ref="areCompetitorsDao"></property>
+	</bean>
+	
+	<bean name="areCompetitorsDao" class="game.est.dao.impl.AreCompetitorsDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="myOngoingGameService" class="game.est.service.impl.MyOngoingGameServiceImpl">
+		<property name="myOngoingGameDao" ref="myOngoingGameDao"></property>
+	</bean>
+	
+	<bean name="myOngoingGameDao" class="game.est.dao.impl.MyOngoingGameDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="checkSecondaryImageService" class="game.est.service.impl.CheckSecondaryImageServiceImpl">
+		<property name="checkSecondaryImageDao" ref="checkSecondaryImageDao"></property>
+	</bean>
+	
+	<bean name="checkSecondaryImageDao" class="game.est.dao.impl.CheckSecondaryImageDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="checkCompletedService" class="game.est.service.impl.CheckCompletedServiceImpl">
+		<property name="checkCompletedDao" ref="checkCompletedDao"></property>
+	</bean>
+	
+	<bean name="checkCompletedDao" class="game.est.dao.impl.CheckCompletedDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="nextGameDeleteDataService" class="game.est.service.impl.NextGameDeleteDataServiceImpl">
+		<property name="nextGameDeleteDataDao" ref="nextGameDeleteDataDao"></property>
+	</bean>
+	
+	<bean name="nextGameDeleteDataDao" class="game.est.dao.impl.NextGameDeleteDataDaoImpl">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/est" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+</beans>
