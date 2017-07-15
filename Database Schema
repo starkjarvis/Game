@@ -1,0 +1,10 @@
+If there is problem importing sql dump file, here is the database schema:
+
+1. registration table:
+   create table registration(fullName varchar(100), email varchar(100), password varchar(100), dateOfBirth varchar(100), gender varchar(100), PRIMARY KEY(email));
+2. login table:
+   create table login(email varchar(100), password varchar(100), usertype varchar(100), status varchar(100) DEFAULT 'offline', id int NOT NULL AUTO_INCREMENT, playing int(20) DEFAULT 0, high_score int(20) DEFAULT 0, FOREIGN KEY(email) REFERENCES registration(email));
+3. game table:
+   create table game(username varchar(100), game_id int(100), FOREIGN KEY(username) REFERENCES registration(email), PRIMARY KEY(game_id));
+4. playgame table:
+   create table playgame(primary_image int(20), game_id int(100), completed int(10), secondary_images_p1 int(20), secondary_image_p2 int(20), secondary_image_5 int(20), FOREIGN KEY(game_id) REFERENCES game(game_id));
