@@ -1,4 +1,8 @@
 # Game
+How to run:
+1. Extract the sql dump file in your mysql database.
+2. Export the dowloaded project into Eclipse IDE (with tomcat server).
+ And run the project, which will open in your default browser, type login, in the end of opened link in your browser.
 
 Features of the ESP Game:
 1. Multiple players can log in through different browser with their account credentials or sign up.
